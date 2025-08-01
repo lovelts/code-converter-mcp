@@ -1,8 +1,8 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { Logger } from '../utils/Logger.js';
-import { CodeConverter } from '../converters/CodeConverter.js';
-import { PromptManager } from '../prompts/PromptManager.js';
-import { FileProcessor } from '../utils/FileProcessor.js';
+import { Logger } from '../utils/logger.js';
+import { CodeConverter } from '../converters/codeConverter.js';
+import { PromptManager } from '../prompts/promptManager.js';
+import { FileProcessor } from '../utils/fileProcessor.js';
 import { ConversionRequest, ConversionResponse } from '../types/index.js';
 
 export class CodeConverterServer {

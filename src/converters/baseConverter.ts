@@ -1,4 +1,4 @@
-import { Logger } from '../utils/Logger.js';
+import { Logger } from '../utils/logger.js';
 import { ConversionOptions } from '../types/index.js';
 
 export abstract class BaseConverter {

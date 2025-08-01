@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { Logger } from '../utils/Logger.js';
+import { Logger } from '../utils/logger.js';
 import { PromptTemplate } from '../types/index.js';
 
 export class PromptManager {

@@ -1,6 +1,6 @@
-import { BaseConverter } from './BaseConverter.js';
+import { BaseConverter } from './baseConverter.js';
 import { ConversionOptions } from '../types/index.js';
-import { PromptManager } from '../prompts/PromptManager.js';
+import { PromptManager } from '../prompts/promptManager.js';
 
 export class CSharpToTypeScriptConverter extends BaseConverter {
   private promptManager: PromptManager;

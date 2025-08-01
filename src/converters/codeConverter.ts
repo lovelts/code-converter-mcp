@@ -1,8 +1,8 @@
-import { Logger } from '../utils/Logger.js';
+import { Logger } from '../utils/logger.js';
 import { ConversionRequest, ConversionResponse, ConversionStats, LanguageSupport } from '../types/index.js';
-import { PromptManager } from '../prompts/PromptManager.js';
-import { CSharpToTypeScriptConverter } from './CSharpToTypeScriptConverter.js';
-import { BaseConverter } from './BaseConverter.js';
+import { PromptManager } from '../prompts/promptManager.js';
+import { CSharpToTypeScriptConverter } from './csharpToTypeScriptConverter.js';
+import { BaseConverter } from './baseConverter.js';
 
 export class CodeConverter {
   private logger: Logger;
