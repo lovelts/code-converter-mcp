@@ -1,0 +1,91 @@
+# MCP Code Converter Server - Cursor Configuration
+
+## 项目概述
+这是一个基于Model Context Protocol (MCP)的代码转换服务器，支持将C#代码转换为TypeScript，并可扩展支持其他语言的转换。
+
+## 代码规范
+- 使用TypeScript
+- 文件命名采用小写开头（camelCase）
+- 类名采用PascalCase
+- 函数和变量采用camelCase
+- 常量采用UPPER_SNAKE_CASE
+
+## 项目结构
+```
+src/
+├── core/                 # 核心服务器逻辑
+│   └── codeConverterServer.ts
+├── converters/           # 代码转换器
+│   ├── baseConverter.ts
+│   ├── codeConverter.ts
+│   └── csharpToTypeScriptConverter.ts
+├── prompts/             # Prompt管理器
+│   └── promptManager.ts
+├── utils/               # 工具类
+│   ├── fileProcessor.ts
+│   └── logger.ts
+├── types/               # 类型定义
+│   └── index.ts
+├── cli.ts              # CLI工具
+└── index.ts            # 主入口
+```
+
+## 核心组件
+
+### MCP Server (src/index.ts)
+- 使用@modelcontextprotocol/sdk创建标准MCP服务器
+- 支持stdio传输协议，可以直接与Cursor集成
+- 注册工具调用处理器
+
+### CodeConverterServer (src/core/codeConverterServer.ts)
+核心业务逻辑层，负责：
+- 工具注册：注册各种转换工具
+- 请求路由：将MCP工具调用路由到相应的处理函数
+- 错误处理：统一的错误处理和日志记录
+
+### CodeConverter (src/converters/codeConverter.ts)
+负责管理所有语言转换器：
+- 转换器注册：管理不同语言对的转换器
+- 转换历史：记录转换统计信息
+- 语言支持：提供支持的语言列表
+
+### BaseConverter (src/converters/baseConverter.ts)
+定义了所有转换器的通用接口：
+- 抽象方法：convert() 和 getSupportedFeatures()
+- 通用功能：代码预处理、后处理、LLM调用
+- 配置管理：语言特定选项处理
+
+## 开发指南
+
+### 添加新的语言转换器
+1. 继承BaseConverter类
+2. 实现convert()和getSupportedFeatures()方法
+3. 在CodeConverter中注册新的转换器
+4. 创建相应的prompt模板
+
+### 创建自定义Prompt模板
+1. 在prompts/{language}/目录下创建.md文件
+2. 使用变量占位符：{{sourceCode}}, {{preserveComments}}, {{includeTypes}}, {{targetFramework}}
+3. 按语言分类组织模板
+
+### 文件处理
+- 支持单文件和目录批量转换
+- 可配置的批处理大小
+- 文件大小限制和错误恢复
+- 进度显示和统计信息
+
+## 与Cursor集成
+- 使用标准MCP协议，Cursor原生支持
+- stdio传输，无需额外配置
+- 工具调用标准化
+
+## 测试和调试
+- 使用npm run dev进行开发
+- 使用npm run build构建项目
+- 使用npm run start:stdio启动MCP服务器
+
+## 注意事项
+- 确保所有import路径使用正确的文件名（小写开头）
+- 保持代码模块化和可扩展性
+- 遵循TypeScript严格模式
+- 使用统一的日志记录和错误处理 

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "mcp-cs2ts-server": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "cwd": "/path/to/your/mcp-cs2ts-server"
+    }
+  }
+} 
